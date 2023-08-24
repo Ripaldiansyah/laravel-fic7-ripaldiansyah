@@ -13,19 +13,22 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        // $users = User::paginate(5);
         $users = DB::table('users')
-            ->when($request->input('search'), function ($query, $search) {
-                $query->where('name', 'like', '%' . $search . '%')
-                    ->orwhere('phone', 'like', '%' . $search . '%')
-                    ->orwhere('email', 'like', '%' . $search . '%');
-                    if(strtolower($search) === 'pending'){
-                        $query->orwhereNull('email_verified_at');
-                    }else{
-                        $query->orwhereNotNull('email_verified_at');
-                    }
-                ;
-            })->paginate(5);
+    ->when($request->input('search'), function ($query, $search) {
+        $query->where(function ($subquery) use ($search) {
+            $subquery->where('name', 'like', '%' . $search . '%')
+                ->orWhere('phone', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%');
+        });
+        
+        if (strtolower($search) === 'pending') {
+            $query->orWhereNull('email_verified_at');
+        } else {
+            $query->whereNotNull('email_verified_at');
+        }
+    })->paginate(5);
+
+
         return view('pages.user.index', compact('users'));
     }
 
