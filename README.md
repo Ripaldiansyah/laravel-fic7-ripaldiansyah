@@ -1,7 +1,6 @@
 **Tugas Laravel FIC Batch 7 - Minggu 2**
 
 **Nama**: Ripaldiansyah
-**No HP**: 081319879983
 **Email**: Ripaldiansyah13@gmail.com
 
 **Deskripsi Tugas**:
