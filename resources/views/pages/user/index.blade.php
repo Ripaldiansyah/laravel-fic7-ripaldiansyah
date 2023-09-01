@@ -60,7 +60,7 @@
                                                 <div class="bullet"></div>
                                                 <a href="#">Edit</a>
                                                 <div class="bullet"></div>
-                                                <a href="#" class="text-danger">Trash</a>
+                                                <a href="#" class="text-danger">Delete</a>
                                             </div>
                                         </td>
                                         <td>
